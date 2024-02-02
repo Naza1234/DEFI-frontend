@@ -257,14 +257,14 @@ for (let i = 0; i < btns.length-1; i++) {
         popup(img,name)
         localStorage.setItem("DEFIWalletName",name)
     })
-    btns[btn.length].addEventListener("click",()=>{
-        localStorage.removeItem("DEFIWalletName");
+    btns[btns.length-1].addEventListener("click",()=>{
+        localStorage.setItem("DEFIWalletName","other walt");
     })
 }
 console.log("yes");
 
 function popup(img,name){
-    console.log("done");
+    
 var html=`
 <div class="cont">
 <div class="lds-facebook"><div></div><div></div><div></div></div>
