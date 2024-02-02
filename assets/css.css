@@ -143,12 +143,12 @@ header img{
     border-radius: 50%;
     background-position: right;
     z-index: -2;
-    left: 750px;
+    left: 1050px;
     content: "";
 }
 
 .header::before{
-    background-color: #78afefa1;
+    background-color: #88baf372;
     position: absolute;
     top:calc( 610px - 800px);
     width: 800px;
@@ -156,7 +156,7 @@ header img{
     border-radius: 50%;
     background-position: right;
     z-index: -1;
-    left: 750px;
+    left: 1050px;
     content: "";
 }
 
